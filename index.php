@@ -58,7 +58,7 @@ if ($result) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fruit Quiz Game</title>
+    <title>Juicy Quiz Game</title>
     <style>
         :root {
             --primary-color: #3498db;
@@ -237,7 +237,7 @@ if ($result) {
     <?php if (!isset($_SESSION['game_started']) && !isset($_GET['show_results'])): ?>
         <!-- Start Screen -->
         <div class="game-container">
-            <h1>Fruit Quiz Game</h1>
+            <h1>Juicy Quiz Game</h1>
             <div class="game-info">
                 Can you identify all 10 fruits? Test your knowledge!
             </div>
@@ -352,5 +352,3 @@ if ($result) {
     <?php endif; ?>
 </body>
 </html>
-
-
