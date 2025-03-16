@@ -61,157 +61,106 @@ if ($result) {
     <title>Fruit Quiz Game</title>
     <style>
         :root {
-            --primary-color: #FF6B6B;
-            --secondary-color: #4ECDC4;
-            --accent-color: #FFE66D;
-            --background-color: #f0f2f5;
-            --text-color: #2C3E50;
-            --shadow: 0 8px 30px rgba(0,0,0,0.12);
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f5f6fa;
+            --text-color: #2c3e50;
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         body {
-            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--background-color) 0%, #ffffff 100%);
+            background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
         }
 
         .game-container {
             background-color: white;
-            border-radius: 24px;
-            padding: 40px;
+            border-radius: 10px;
+            padding: 25px;
             box-shadow: var(--shadow);
-            margin: 20px auto;
+            margin: 0 auto;
             max-width: 800px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-        }
-
-        .game-title {
-            margin-bottom: 40px;
-            text-align: center;
         }
 
         h1 {
-            color: var(--text-color);
-            margin-bottom: 20px;
-            font-size: 3em;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary-color);
             text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2em;
         }
 
         .choices {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin: 30px auto;
-            padding: 0 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px auto;
+            max-width: 600px;
         }
 
         .choice-btn {
-            padding: 20px 30px;
-            font-size: 18px;
+            padding: 15px 20px;
+            font-size: 16px;
             cursor: pointer;
             background-color: white;
-            border: 3px solid var(--secondary-color);
-            border-radius: 16px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--text-color);
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            color: var(--primary-color);
         }
 
         .choice-btn:hover {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color);
             color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(78, 205, 196, 0.2);
-        }
-
-        .choice-btn:active {
-            transform: translateY(-2px);
         }
 
         .score {
-            font-size: 32px;
-            margin: 30px 0;
+            font-size: 24px;
+            margin: 20px 0;
             color: var(--primary-color);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .score i {
-            color: var(--accent-color);
-            animation: pulse 2s infinite;
+            text-align: center;
         }
 
         .question-count {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 18px;
+            margin-bottom: 20px;
             color: var(--text-color);
-            font-weight: 500;
             text-align: center;
-            opacity: 0.8;
         }
 
         .high-scores {
-            margin-top: 40px;
+            margin-top: 30px;
             background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: var(--shadow);
+            border-radius: 8px;
+            padding: 20px;
         }
 
         .high-scores h2 {
-            color: var(--text-color);
-            margin-bottom: 20px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
             text-align: center;
         }
 
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin: 20px 0;
+            border-collapse: collapse;
+            margin: 15px 0;
             background-color: white;
-            border-radius: 16px;
-            overflow: hidden;
         }
 
         th {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background-color: var(--primary-color);
             color: white;
-            font-weight: 600;
-            padding: 15px 20px;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 1px;
+            padding: 12px;
+            text-align: left;
         }
 
         td {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: background-color 0.3s;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
         }
 
         tr:last-child td {
@@ -219,115 +168,89 @@ if ($result) {
         }
 
         tr:hover td {
-            background-color: rgba(78, 205, 196, 0.05);
+            background-color: #f8f9fa;
         }
 
         input[type="text"] {
-            padding: 15px 25px;
-            margin: 20px 0;
-            border: 2px solid #e1e1e1;
-            border-radius: 12px;
+            padding: 12px 20px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 6px;
             font-size: 16px;
-            width: 280px;
-            transition: all 0.3s ease;
-            background-color: white;
+            width: 250px;
+            display: block;
+            margin: 15px auto;
         }
 
         input[type="text"]:focus {
-            border-color: var(--secondary-color);
+            border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.1);
         }
 
         button, .button {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background-color: var(--primary-color);
             color: white;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 12px;
+            border-radius: 6px;
             font-size: 16px;
-            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: background-color 0.2s;
+            display: inline-block;
+            text-decoration: none;
         }
 
         button:hover, .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        button:active, .button:active {
-            transform: translateY(0);
+            background-color: #2980b9;
         }
 
         .result-message {
-            font-size: 28px;
-            margin: 30px 0;
-            padding: 20px;
-            border-radius: 16px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            font-weight: 600;
+            font-size: 22px;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f1f8ff;
+            color: var(--primary-color);
             text-align: center;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
 
         .game-info {
             text-align: center;
-            margin-bottom: 30px;
-            color: var(--text-color);
-            opacity: 0.8;
+            margin: 15px 0;
+            color: #666;
         }
 
         .fruit-image {
             max-width: 200px;
             margin: 20px auto;
-            border-radius: 20px;
+            display: block;
+            border-radius: 8px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
         }
 
-        .fruit-image:hover {
-            transform: scale(1.05);
+        .text-center {
+            text-align: center;
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <?php if (!isset($_SESSION['game_started']) && !isset($_GET['show_results'])): ?>
         <!-- Start Screen -->
         <div class="game-container">
-            <div class="game-title">
-                <h1>🍎 Fruit Quiz Game 🍊</h1>
-                <div class="game-info">
-                    Test your fruit knowledge! Can you identify all 10 fruits correctly?
-                </div>
+            <h1>Fruit Quiz Game</h1>
+            <div class="game-info">
+                Can you identify all 10 fruits? Test your knowledge!
             </div>
-            <form method="POST" style="text-align: center;">
+            <form method="POST" class="text-center">
                 <input type="text" name="username" placeholder="Enter your username" required>
-                <br>
-                <button type="submit">Start Game <i class="fas fa-play"></i></button>
+                <button type="submit">Start Game</button>
             </form>
             
             <div class="high-scores">
-                <h2>🏆 High Scores</h2>
+                <h2>High Scores</h2>
                 <table>
                     <tr>
-                        <th>Rank</th>
+                        <th>#</th>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Time</th>
@@ -338,7 +261,7 @@ if ($result) {
                     foreach ($highScores as $score): 
                     ?>
                     <tr>
-                        <td>#<?php echo $rank++; ?></td>
+                        <td><?php echo $rank++; ?></td>
                         <td><?php echo htmlspecialchars($score->username); ?></td>
                         <td><?php echo $score->score; ?>/10</td>
                         <td><?php echo $score->time; ?>s</td>
@@ -351,19 +274,19 @@ if ($result) {
     <?php elseif (isset($_GET['show_results'])): ?>
         <!-- Results Screen -->
         <div class="game-container">
-            <h1>Game Over! 🎮</h1>
+            <h1>Game Over!</h1>
             <div class="result-message">
-                Final Score: <?php echo $_SESSION['final_score']; ?>/10
+                Your Score: <?php echo $_SESSION['final_score']; ?>/10
             </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="index.php" class="button">Play Again <i class="fas fa-redo"></i></a>
+            <div class="text-center">
+                <a href="index.php" class="button">Play Again</a>
             </div>
             
             <div class="high-scores">
-                <h2>🏆 High Scores</h2>
+                <h2>High Scores</h2>
                 <table>
                     <tr>
-                        <th>Rank</th>
+                        <th>#</th>
                         <th>Player</th>
                         <th>Score</th>
                         <th>Time</th>
@@ -374,7 +297,7 @@ if ($result) {
                     foreach ($highScores as $score): 
                     ?>
                     <tr>
-                        <td>#<?php echo $rank++; ?></td>
+                        <td><?php echo $rank++; ?></td>
                         <td><?php echo htmlspecialchars($score->username); ?></td>
                         <td><?php echo $score->score; ?>/10</td>
                         <td><?php echo $score->time; ?>s</td>
@@ -387,7 +310,7 @@ if ($result) {
     <?php else: ?>
         <!-- Game Screen -->
         <div class="game-container">
-            <div class="score"><i class="fas fa-star"></i> Score: <?php echo $_SESSION['score']; ?>/10</div>
+            <div class="score">Score: <?php echo $_SESSION['score']; ?>/10</div>
             <div class="question-count">Question <?php echo $_SESSION['question_count'] + 1; ?> of 10</div>
             
             <?php
@@ -397,7 +320,7 @@ if ($result) {
             $available_fruits = array_diff($fruits, $_SESSION['used_fruits']);
             
             if (empty($available_fruits)) {
-                $_SESSION['used_fruits'] = []; // Reset if all fruits are used
+                $_SESSION['used_fruits'] = [];
                 $available_fruits = $fruits;
             }
             
@@ -429,3 +352,5 @@ if ($result) {
     <?php endif; ?>
 </body>
 </html>
+
+
