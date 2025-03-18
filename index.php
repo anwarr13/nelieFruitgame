@@ -245,27 +245,28 @@ if ($result) {
                 <input type="text" name="username" placeholder="Enter your username" required>
                 <button type="submit">Start Game</button>
             </form>
-            
+            <br>
+            <center><em>Created by: Nelie Jumalon</em></center>
             <div class="high-scores">
                 <h2>High Scores</h2>
                 <table>
                     <tr>
-                        <th>#</th>
-                        <th>Player</th>
+                        <th>Rank</th>
+                        <th>Date Played</th>
+                        <th>Username</th>
                         <th>Score</th>
                         <th>Time</th>
-                        <th>Date</th>
                     </tr>
                     <?php 
                     $rank = 1;
                     foreach ($highScores as $score): 
                     ?>
-                    <tr>
+                    <tr>                 
                         <td><?php echo $rank++; ?></td>
+                        <td><?php echo $score->date_played; ?></td>
                         <td><?php echo htmlspecialchars($score->username); ?></td>
                         <td><?php echo $score->score; ?>/10</td>
-                        <td><?php echo $score->time; ?>s</td>
-                        <td><?php echo $score->date_played; ?></td>
+                        <td><?php echo $score->time; ?> seconds</td>
                     </tr>
                     <?php endforeach; ?>
                 </table>
@@ -287,10 +288,10 @@ if ($result) {
                 <table>
                     <tr>
                         <th>#</th>
-                        <th>Player</th>
+                        <th>Date Played</th>
+                        <th>Username</th>
                         <th>Score</th>
                         <th>Time</th>
-                        <th>Date</th>
                     </tr>
                     <?php 
                     $rank = 1;
@@ -298,10 +299,10 @@ if ($result) {
                     ?>
                     <tr>
                         <td><?php echo $rank++; ?></td>
+                        <td><?php echo $score->date_played; ?></td>
                         <td><?php echo htmlspecialchars($score->username); ?></td>
                         <td><?php echo $score->score; ?>/10</td>
                         <td><?php echo $score->time; ?>s</td>
-                        <td><?php echo $score->date_played; ?></td>
                     </tr>
                     <?php endforeach; ?>
                 </table>
@@ -351,4 +352,4 @@ if ($result) {
         </div>
     <?php endif; ?>
 </body>
-</html>
+</html>F
